@@ -22,16 +22,15 @@ const Card: React.FC<CardProps> = (props) => {
     ...defaultProps,
     ...props,
   };
-
   const rootClassName = ["card", className].filter(Boolean).join(" ");
-  // 兄弟组件通信
-  const event = new Event('on-card')
-  const clickTap = () => {
-    event.params = { name: 'tap'}
-    window.dispatchEvent(event)
-  }
+
+  // 监听兄弟事件
+  window.addEventListener('on-card', (e) => {
+    console.log(e.params,'触发了');
+    
+  })
   return (
-    <div className={rootClassName} onClick={clickTap}>
+    <div className={rootClassName} onClick={()=> callback('233434')}>
       {(title || extra) && (
         <div className="card-header">
           <div className="card-title">{title}</div>
